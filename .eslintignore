@@ -1,0 +1,5 @@
+/dist/
+/public/config.js
+/static/
+
+!.eslintrc.js
