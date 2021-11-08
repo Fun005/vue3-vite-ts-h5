@@ -7,21 +7,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
+<script lang="ts" setup>
 import { storeToRefs } from "pinia"
 import useCountStore from "@/store/count"
 
-export default defineComponent({
-  name: "PiniaPage",
-  setup() {
-    const { addCount } = useCountStore()
-    const { count, doubleCount } = storeToRefs(useCountStore())
-    return {
-      count,
-      doubleCount,
-      addCount
-    }
-  }
-})
+const { addCount } = useCountStore()
+const { count, doubleCount } = storeToRefs(useCountStore())
 </script>

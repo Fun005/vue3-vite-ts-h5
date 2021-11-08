@@ -5,36 +5,31 @@
       alt="Vue logo"
       src="../assets/logo.png"
     />
-    <div class="page-title">Vite2.x + Vue3.x + TypeScript + Element Plus</div>
-    <el-button @click="jump('axios')" type="primary">goAxios</el-button>
-    <el-button @click="jump('vuex')" type="primary">goVuex</el-button>
-    <el-button @click="jump('pinia')" type="primary">goPinia</el-button>
-    <el-button @click="jump('test')" type="primary">goTest</el-button>
+    <div class="page-title">
+      Vue3.x + Vite2.x + TypeScript + pinia + varlet + Element Plus
+    </div>
+
+    <var-space :size="[10, 10]">
+      <var-button type="danger">危险按钮</var-button>
+      <var-button @click="jump('axios')" type="primary">goAxios</var-button>
+      <var-button @click="jump('pinia')" type="success">goPinia</var-button>
+      <var-button @click="jump('test')" type="warning">goTest</var-button>
+    </var-space>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
+<script lang="ts" setup>
 import { useRouter } from "vue-router"
 
-export default defineComponent({
-  name: "HomePage",
-  setup() {
-    const router = useRouter()
-    const jump = (value: string): void => {
-      router.push({
-        path: value,
-        params: {
-          a: "value"
-        }
-      })
+const router = useRouter()
+const jump = (value: string): void => {
+  router.push({
+    path: value,
+    params: {
+      a: "value"
     }
-
-    return {
-      jump
-    }
-  }
-})
+  })
+}
 </script>
 
 <style scoped lang="less">

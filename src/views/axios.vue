@@ -26,36 +26,26 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, ref, Ref } from "vue"
+<script lang="ts" setup>
+import { ref } from "vue"
 import axios from "@/utils/axios"
 
-export default defineComponent({
-  name: "AxiosPage",
-  setup() {
-    const userInfo: Ref = ref(null)
-    const loading = ref(false)
-    const getUserInfo = () => {
-      loading.value = true
-      axios
-        .get("/users/Fun005")
-        .then((response) => {
-          console.log("response: ", response.data)
-          userInfo.value = response.data
-          loading.value = false
-        })
-        .catch((error) => {
-          loading.value = false
-          console.error(error)
-        })
-    }
-    return {
-      userInfo,
-      loading,
-      getUserInfo
-    }
-  }
-})
+const userInfo = ref(null)
+const loading = ref(false)
+const getUserInfo = () => {
+  loading.value = true
+  axios
+    .get("/users/Fun005")
+    .then((response) => {
+      console.log("response: ", response.data)
+      userInfo.value = response.data
+      loading.value = false
+    })
+    .catch((error) => {
+      loading.value = false
+      console.error(error)
+    })
+}
 </script>
 <style scoped lang="less">
 .axios-container {

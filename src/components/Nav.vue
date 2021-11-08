@@ -15,68 +15,63 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted, watch } from "vue";
-import { useRouter } from "vue-router";
-import { NavItem } from "../common/types";
+import { defineComponent, reactive, toRefs, onMounted, watch } from "vue"
+import { useRouter } from "vue-router"
+import { NavItem } from "../common/types"
 
 export default defineComponent({
   name: "Nav",
   setup() {
-    const router = useRouter();
+    const router = useRouter()
     const reactiveData = reactive({
       navList: [
         {
           name: "Home",
           isActive: false,
-          path: "/",
-        },
-        {
-          name: "Vuex",
-          isActive: false,
-          path: "/vuex",
+          path: "/"
         },
         {
           name: "Axios",
           isActive: false,
-          path: "/axios",
+          path: "/axios"
         },
         {
           name: "Test",
           isActive: false,
-          path: "/test",
-        },
+          path: "/test"
+        }
       ],
       navClick(e: NavItem) {
-        router.push(e.path);
-      },
-    });
+        router.push(e.path)
+      }
+    })
     const changeNavActive = (currentPath: string) => {
       reactiveData.navList.forEach((v: NavItem) => {
-        const temp = v;
-        temp.isActive = temp.path === currentPath;
-        return temp;
-      });
-    };
+        const temp = v
+        temp.isActive = temp.path === currentPath
+        return temp
+      })
+    }
     watch(
       () => router.currentRoute.value,
       (_n) => {
-        changeNavActive(_n.path);
+        changeNavActive(_n.path)
       }
-    );
+    )
     onMounted(() => {
       router.isReady().then(() => {
-        changeNavActive(router.currentRoute.value.path);
-      });
-    });
+        changeNavActive(router.currentRoute.value.path)
+      })
+    })
     return {
-      ...toRefs(reactiveData),
-    };
-  },
-});
+      ...toRefs(reactiveData)
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">
-@import "../style/base.less";
+@import "../styles/base.less";
 .nav {
   position: relative;
   width: 100%;

@@ -1,30 +1,17 @@
-import { createStore } from "vuex"
+import { defineStore } from "pinia"
 
-const defaultState = {
-  count: 0
-}
-
-// 创建一个新的store实例
-export default createStore({
-  state() {
-    return defaultState
-  },
-
-  mutations: {
-    increment(state: typeof defaultState) {
-      state.count += 1
-    }
-  },
-
-  actions: {
-    increment(context) {
-      context.commit("increment")
-    }
-  },
-
+const defineDefaultStore = defineStore("default", {
+  state: () => ({ name: "tct", count: 222 }),
   getters: {
-    double(state: typeof defaultState) {
-      return 2 * state.count
+    doubleCount(state) {
+      return state.count * 2
+    }
+  },
+  actions: {
+    addCount(num: number) {
+      this.count += num
     }
   }
 })
+
+export default defineDefaultStore

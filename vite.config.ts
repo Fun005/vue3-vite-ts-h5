@@ -1,5 +1,7 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
+import components from "unplugin-vue-components/vite"
+import { VarletUIResolver } from "unplugin-vue-components/resolvers"
 import styleImport from "vite-plugin-style-import"
 import externalGlobals from "rollup-plugin-external-globals"
 // import { viteMockServe } from 'vite-plugin-mock'
@@ -18,12 +20,11 @@ export default defineConfig({
     outDir: "dist", // 输出路径
     assetsDir: "assets", // 静态资源路径
     rollupOptions: {
-      external: ["vant", "element-plus", "axios"],
+      external: ["element-plus", "axios"],
       plugins: [
         commonjs(),
         externalGlobals({
           axios: "axios",
-          vant: "vant",
           "element-plus": "ElementPlus"
         }),
         analyze()
@@ -31,7 +32,6 @@ export default defineConfig({
       output: {
         globals: {
           axios: "axios",
-          vant: "vant",
           "element-plus": "ElementPlus"
         }
       }
@@ -60,8 +60,11 @@ export default defineConfig({
           resolveComponent: (name) => `element-plus/lib/${name}`
         }
       ]
-    })
+    }),
     // viteMockServe({supportTs: false})
+    components({
+      resolvers: [VarletUIResolver()]
+    })
   ],
   resolve: {
     alias: {
