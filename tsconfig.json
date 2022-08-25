@@ -14,9 +14,22 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+//      "/@/*": ["src/*"],
+      "/#/*": ["types/*"]
     },
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules","*.html"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "build/**/*.ts",
+    "build/**/*.d.ts",
+    "mock/**/*.ts",
+    "vite.config.ts"],
+  "exclude": ["node_modules","*.html","dist","**/*.js"]
 }
